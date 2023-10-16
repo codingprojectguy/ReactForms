@@ -1,9 +1,9 @@
 import { useState } from "react";
-import React from "react";
 
-const SignUpForm = ({ token, setToken }) => {
+const SignUpForm = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState(null);
 
   async function handleSubmit(event) {
@@ -25,6 +25,7 @@ const SignUpForm = ({ token, setToken }) => {
       );
       const result = await response.json();
       setToken(result.token);
+      setSuccessMessage(result.message);
       console.log(result);
       console.log(result.token);
     } catch (error) {
@@ -35,6 +36,8 @@ const SignUpForm = ({ token, setToken }) => {
   return (
     <>
       <h2>Sign Up!</h2>
+      {successMessage && <p>{successMessage}</p>}
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}

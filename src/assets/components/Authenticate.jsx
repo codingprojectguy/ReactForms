@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Authenticate = ({ token, setToken }) => {
+const Authenticate = ({ token }) => {
   const [successMessage, setSuccessMessage] = useState(null);
   const [error, setError] = useState(null);
 
